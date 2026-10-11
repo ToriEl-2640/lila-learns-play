@@ -8,7 +8,7 @@ export const AGES: { id: AgeBand; name: string; range: string; blurb: string; em
   { id: "thinker", name: "Big Thinkers World", range: "9–12 years", blurb: "Deeper reasoning and real-world challenges.", emoji: "🧠", tone: "bg-secondary" },
 ];
 
-export const ageInfo = (id: AgeBand | null) => AGES.find((a) => a.id === id) ?? AGES[2];
+export const ageInfo = (id: AgeBand | null) => AGES.find((a) => a.id === id) ?? AGES[2]!;
 
 export const GREETING: Record<AgeBand, string> = {
   baby: "Hello, little one! Let's look together.",

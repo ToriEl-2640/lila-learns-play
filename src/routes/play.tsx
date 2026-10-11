@@ -35,11 +35,11 @@ const ROUNDS = 5;
 
 /** Learning goal: identify colors in everyday objects. No timers, no scores. */
 function makeRound(n: number, size: number) {
-  const target = OBJECTS[(n * 3 + 1) % OBJECTS.length];
+  const target = OBJECTS[(n * 3 + 1) % OBJECTS.length]!;
   const others = OBJECTS.filter((o) => o.color !== target.color);
   const picks = [target];
   for (let i = 0; picks.length < size; i++) {
-    const o = others[(n * 2 + i * 3) % others.length];
+    const o = others[(n * 2 + i * 3) % others.length]!;
     if (!picks.some((p) => p.color === o.color)) picks.push(o);
   }
   return { target, options: picks.sort((a, b) => (a.name + n).localeCompare(b.name + n)) };

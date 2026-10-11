@@ -31,11 +31,11 @@ function ShowTellItem() {
   const band = age ?? "preschool";
   const isBaby = band === "baby";
   const idx = SHOW_ITEMS.findIndex((i) => i.id === item.id);
-  const nextItem = SHOW_ITEMS[(idx + 1) % SHOW_ITEMS.length];
+  const nextItem = SHOW_ITEMS[(idx + 1) % SHOW_ITEMS.length]!;
 
   useEffect(() => { setFactIdx(0); setStep("learn"); speak(item.intro); return stopSpeaking; }, [item.id]);
 
-  const fact = item.facts[factIdx];
+  const fact = item.facts[factIdx]!;
   const line = factIdx === 0 && step === "learn" ? item.intro : fact;
 
   return (
@@ -44,7 +44,7 @@ function ShowTellItem() {
       <div className="card-soft relative flex items-end justify-between overflow-hidden bg-sky p-4">
         <img src={lilaWave} alt="Lila" className="h-36 w-auto" />
         <button
-          onClick={() => { const n = (factIdx + 1) % item.facts.length; setFactIdx(n); speak(item.facts[n]); }}
+          onClick={() => { const n = (factIdx + 1) % item.facts.length; setFactIdx(n); speak(item.facts[n]!); }}
           aria-label={`Tap the ${item.name} for another fact`}
           className="mb-4 mr-2 animate-float text-[7rem] leading-none drop-shadow-lg"
         >

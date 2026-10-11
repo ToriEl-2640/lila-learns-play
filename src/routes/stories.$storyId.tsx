@@ -28,10 +28,10 @@ function Reader() {
   const [readToMe, setReadToMe] = useState(true);
   const [playing, setPlaying] = useState(false);
   const total = story.pages.length;
-  const current = story.pages[page];
+  const current = story.pages[page]!;
 
   useEffect(() => {
-    if (current && readToMe && sound) { speak(current.text); setPlaying(true); } else setPlaying(false);
+    if (story.pages[page] && readToMe && sound) { speak(current.text); setPlaying(true); } else setPlaying(false);
   }, [page, readToMe]);
   useEffect(() => stopSpeaking, []);
 

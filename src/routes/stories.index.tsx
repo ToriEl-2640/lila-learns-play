@@ -25,7 +25,7 @@ function StoryList() {
             <img src={s.cover} alt="" className="aspect-[4/3] w-full object-cover" />
             <div className="p-4">
               <h2 className="text-xl">{s.title}</h2>
-              <p className="text-sm text-muted-foreground">{s.theme} · {s.minutes} min · {ageInfo(s.ages[0]).range.split("–")[0]}+ years</p>
+              <p className="text-sm text-muted-foreground">{s.theme} · {s.minutes} min · {(ageInfo(s.ages[0] ?? null).range.split("–")[0] ?? "")}+ years</p>
             </div>
           </Link>
         ))}

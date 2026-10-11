@@ -24,8 +24,8 @@ function Home() {
   if (s.hydrated && !s.age) return <Navigate to="/onboarding" />;
   const age = s.age ?? "preschool";
   const info = ageInfo(age);
-  const next = SHOW_ITEMS.find((i) => !s.completed[`show:${i.id}`]?.done) ?? SHOW_ITEMS[0];
-  const today = SHOW_ITEMS[new Date().getDate() % SHOW_ITEMS.length];
+  const next = SHOW_ITEMS.find((i) => !s.completed[`show:${i.id}`]?.done) ?? SHOW_ITEMS[0]!;
+  const today = SHOW_ITEMS[new Date().getDate() % SHOW_ITEMS.length]!;
   const doneCount = Object.values(s.completed).filter((c) => c.done).length;
   const isBaby = age === "baby";
   const greeting = GREETING[age];

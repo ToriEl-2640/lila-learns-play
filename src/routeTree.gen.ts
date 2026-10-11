@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as GrownUpsRouteImport } from './routes/grown-ups'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as PlayRouteImport } from './routes/play'
+import { Route as ShowTellIndexRouteImport } from './routes/show-tell.index'
+import { Route as ShowTellItemIdRouteImport } from './routes/show-tell.$itemId'
+import { Route as StoriesIndexRouteImport } from './routes/stories.index'
+import { Route as StoriesStoryIdRouteImport } from './routes/stories.$storyId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GrownUpsRoute = GrownUpsRouteImport.update({
+  id: '/grown-ups',
+  path: '/grown-ups',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayRoute = PlayRouteImport.update({
+  id: '/play',
+  path: '/play',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowTellIndexRoute = ShowTellIndexRouteImport.update({
+  id: '/show-tell/',
+  path: '/show-tell/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShowTellItemIdRoute = ShowTellItemIdRouteImport.update({
+  id: '/show-tell/$itemId',
+  path: '/show-tell/$itemId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesIndexRoute = StoriesIndexRouteImport.update({
+  id: '/stories/',
+  path: '/stories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StoriesStoryIdRoute = StoriesStoryIdRouteImport.update({
+  id: '/stories/$storyId',
+  path: '/stories/$storyId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/grown-ups': typeof GrownUpsRoute
+  '/home': typeof HomeRoute
+  '/onboarding': typeof OnboardingRoute
+  '/play': typeof PlayRoute
+  '/show-tell/$itemId': typeof ShowTellItemIdRoute
+  '/stories/$storyId': typeof StoriesStoryIdRoute
+  '/show-tell/': typeof ShowTellIndexRoute
+  '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/grown-ups': typeof GrownUpsRoute
+  '/home': typeof HomeRoute
+  '/onboarding': typeof OnboardingRoute
+  '/play': typeof PlayRoute
+  '/show-tell/$itemId': typeof ShowTellItemIdRoute
+  '/stories/$storyId': typeof StoriesStoryIdRoute
+  '/show-tell': typeof ShowTellIndexRoute
+  '/stories': typeof StoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/grown-ups': typeof GrownUpsRoute
+  '/home': typeof HomeRoute
+  '/onboarding': typeof OnboardingRoute
+  '/play': typeof PlayRoute
+  '/show-tell/$itemId': typeof ShowTellItemIdRoute
+  '/stories/$storyId': typeof StoriesStoryIdRoute
+  '/show-tell/': typeof ShowTellIndexRoute
+  '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/grown-ups'
+    | '/home'
+    | '/onboarding'
+    | '/play'
+    | '/show-tell/$itemId'
+    | '/stories/$storyId'
+    | '/show-tell/'
+    | '/stories/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/grown-ups'
+    | '/home'
+    | '/onboarding'
+    | '/play'
+    | '/show-tell/$itemId'
+    | '/stories/$storyId'
+    | '/show-tell'
+    | '/stories'
+  id:
+    | '__root__'
+    | '/'
+    | '/grown-ups'
+    | '/home'
+    | '/onboarding'
+    | '/play'
+    | '/show-tell/$itemId'
+    | '/stories/$storyId'
+    | '/show-tell/'
+    | '/stories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  GrownUpsRoute: typeof GrownUpsRoute
+  HomeRoute: typeof HomeRoute
+  OnboardingRoute: typeof OnboardingRoute
+  PlayRoute: typeof PlayRoute
+  ShowTellItemIdRoute: typeof ShowTellItemIdRoute
+  StoriesStoryIdRoute: typeof StoriesStoryIdRoute
+  ShowTellIndexRoute: typeof ShowTellIndexRoute
+  StoriesIndexRoute: typeof StoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/grown-ups': {
+      id: '/grown-ups'
+      path: '/grown-ups'
+      fullPath: '/grown-ups'
+      preLoaderRoute: typeof GrownUpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play': {
+      id: '/play'
+      path: '/play'
+      fullPath: '/play'
+      preLoaderRoute: typeof PlayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/show-tell/': {
+      id: '/show-tell/'
+      path: '/show-tell'
+      fullPath: '/show-tell/'
+      preLoaderRoute: typeof ShowTellIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/show-tell/$itemId': {
+      id: '/show-tell/$itemId'
+      path: '/show-tell/$itemId'
+      fullPath: '/show-tell/$itemId'
+      preLoaderRoute: typeof ShowTellItemIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories/': {
+      id: '/stories/'
+      path: '/stories'
+      fullPath: '/stories/'
+      preLoaderRoute: typeof StoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stories/$storyId': {
+      id: '/stories/$storyId'
+      path: '/stories/$storyId'
+      fullPath: '/stories/$storyId'
+      preLoaderRoute: typeof StoriesStoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  GrownUpsRoute: GrownUpsRoute,
+  HomeRoute: HomeRoute,
+  OnboardingRoute: OnboardingRoute,
+  PlayRoute: PlayRoute,
+  ShowTellItemIdRoute: ShowTellItemIdRoute,
+  StoriesStoryIdRoute: StoriesStoryIdRoute,
+  ShowTellIndexRoute: ShowTellIndexRoute,
+  StoriesIndexRoute: StoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

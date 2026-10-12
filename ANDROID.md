@@ -1,5 +1,25 @@
 # Lila — Android app
 
+## No money yet? Start here
+
+You do **not** need the $25 Google Play fee, a Google Play Developer account, or a
+signing key to put Lila on your phone. Those are only needed to appear in the Play
+Store search results.
+
+Free path (works today):
+
+1. On GitHub: **Actions → "Build installable APK (no fees, no keys)" → Run workflow**.
+2. When the run finishes, open it and download the **lila-installable-apk** file.
+3. Send that file to your phone (WhatsApp to yourself, email, or a USB cable).
+4. Tap it on the phone and allow "install from unknown sources" when asked.
+
+The app looks and behaves the same — Lila's icon, her launch screen, full screen.
+The only differences: it isn't found by searching the Play Store, and you install
+updates yourself by running the same two steps again.
+
+The $25 fee and the signing key below are only for the Play Store listing, and can
+be done later whenever the money is available.
+
 Lila is packaged as a native Android app with [Capacitor](https://capacitorjs.com/):
 a full-screen native shell with Lila's own icon and launch screen that loads the
 published app (https://lila-learns-play.lovable.app). The web app keeps working

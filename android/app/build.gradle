@@ -1,8 +1,9 @@
+apply plugin: 'com.android.application'
+
 android {
     namespace = "app.lovable.lilalearns"
     compileSdk = rootProject.ext.compileSdkVersion
     
-    // Add these lines:
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
         targetCompatibility JavaVersion.VERSION_17

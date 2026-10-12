@@ -27,11 +27,9 @@ jobs:
 
           if [ ! -x "$SDKMANAGER" ]; then
             echo "sdkmanager not found at $SDKMANAGER"
-            ls -R "$ANDROID_SDK_ROOT" || true
             exit 1
           fi
 
-          "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" --licenses --accept-licenses
           "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" \
             "platform-tools" \
             "platforms;android-36" \

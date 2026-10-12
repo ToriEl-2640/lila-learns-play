@@ -31,7 +31,7 @@ jobs:
             exit 1
           fi
 
-          yes | "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" --licenses >/dev/null
+          "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" --licenses --accept-licenses
           "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" \
             "platform-tools" \
             "platforms;android-36" \

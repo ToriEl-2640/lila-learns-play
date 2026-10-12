@@ -1,0 +1,41 @@
+name: Build installable APK (no fees, no keys)
+
+# Builds a plain Lila.app file you can install directly on your own phone.
+# No Google Play account, no $25 fee, and no signing key needed.
+# Run it from GitHub: Actions tab → "Build installable APK (no fees, no keys)" → Run workflow.
+# The finished file appears under "Artifacts" when the run completes.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Prepare web assets
+        run: mkdir -p dist/client && bunx cap sync android
+
+      # Debug builds are signed automatically with Android's standard test key,
+      # so nothing here needs a password or a keystore file.
+      - name: Build installable APK
+        working-directory: android
+        run: ./gradlew assembleDebug
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lila-installable-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
+          # 0 = never delete, so the file stays downloadable after the trial period
+          retention-days: 90

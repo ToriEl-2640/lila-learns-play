@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    distributionUrl=https\://services.gradle.org/distributions/gradle-8.6.1-all.zip
     
     repositories {
         google()

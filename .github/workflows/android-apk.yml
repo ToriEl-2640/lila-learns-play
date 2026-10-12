@@ -1,10 +1,5 @@
 name: Build installable APK (no fees, no keys)
 
-# Builds a plain Lila.app file you can install directly on your own phone.
-# No Google Play account, no $25 fee, and no signing key needed.
-# Run it from GitHub: Actions tab → "Build installable APK (no fees, no keys)" → Run workflow.
-# The finished file appears under "Artifacts" when the run completes.
-
 on:
   workflow_dispatch:
 
@@ -22,22 +17,29 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install Android SDK packages
+      - name: Install Android SDK
+        shell: bash
         run: |
-          yes | "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --sdk_root="${ANDROID_HOME}" --licenses
-          "${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager" --sdk_root="${ANDROID_HOME}" \
+          set -euxo pipefail
+
+          ANDROID_SDK_ROOT="${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}"
+          SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
+
+          if [ ! -x "$SDKMANAGER" ]; then
+            echo "sdkmanager not found at $SDKMANAGER"
+            ls -R "$ANDROID_SDK_ROOT" || true
+            exit 1
+          fi
+
+          yes | "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" --licenses >/dev/null
+          "$SDKMANAGER" --sdk_root="$ANDROID_SDK_ROOT" \
             "platform-tools" \
-            "platforms;android-34" \
-            "build-tools;34.0.0"
+            "platforms;android-36" \
+            "build-tools;36.0.0"
 
       - name: Prepare web assets
         run: mkdir -p dist/client && bunx cap sync android
 
-      # Debug builds are signed automatically with Android's standard test key,
-      # so nothing here needs a password or a keystore file.
       - name: Build installable APK
         working-directory: android
         run: ./gradlew assembleDebug
@@ -46,5 +48,4 @@ jobs:
         with:
           name: lila-installable-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
-          # 0 = never delete, so the file stays downloadable after the trial period
           retention-days: 90

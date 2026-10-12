@@ -1,0 +1,16 @@
+{
+  "name": "Lila — Learning World for Children",
+  "short_name": "Lila",
+  "description": "Explore, play, listen, and learn with Lila and her purple bunny.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#EDE9FE",
+  "background_color": "#EDE9FE",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
